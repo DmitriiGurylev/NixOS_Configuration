@@ -165,6 +165,7 @@ services.xserver = {
 	anydesk
 	dhcpcd	
 	discord
+	dmidecode
 	docker
 	docker-compose
 	foxitreader
