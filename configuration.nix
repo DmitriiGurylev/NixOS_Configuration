@@ -168,6 +168,8 @@ services.xserver = {
 	dmidecode
 	docker
 	docker-compose
+	earlyoom
+	emacs
 	foxitreader
 	git
 	google-chrome
@@ -191,12 +193,14 @@ services.xserver = {
 	postman
 	pkgs.postgresql
 	pulseaudio
+	racket
 	skypeforlinux
 	tdesktop
 	whatsapp-for-linux
 	wine
 	wireshark-qt
 	wpa_supplicant
+	wpsoffice
 	x11docker
 	yandex-disk
 #	emacsPgtkGcc  	 
