@@ -43,9 +43,8 @@ security.pam.services.kwallet = {
 		enable = true; 
 	};
 
+	# Enables wireless support via wpa_supplicant.
     wireless = {
-
-	  # Enables wireless support via wpa_supplicant.
       enable = false;
       interfaces = ["wlp1s0"];
       userControlled.enable = true;
@@ -54,13 +53,12 @@ security.pam.services.kwallet = {
         "RT-WiFi-92B2" = {
           psk = "x4tDupKE";
         };
-	"RT-5WiFi-92B2" = {
-	  psk = "cQ6nc3YU";
-	};
-	"RZIAS" = {
+		"RT-5WiFi-92B2" = {
+	  	  psk = "cQ6nc3YU";
+		};
+		"RZIAS" = {
           psk = "iloverza32167";
         };
-
       };
     }; 
 
@@ -124,7 +122,7 @@ services.xserver = {
 
 #sound.extraConfig = 
 
-   systemd.packages = [ pkgs.packagekit ];
+   systemd.packages = [ pkgs.packagekit pkgs.earlyoom ];
 
 
 
@@ -136,6 +134,13 @@ services.xserver = {
    
    services.postgresql.enable = true;
    services.postgresql.package = pkgs.postgresql_11;
+   
+   # pkgs.ksnip.enable = false;
+   
+   services.earlyoom = {
+   		enable = true;
+		freeMemThreshold = 1;
+   };
    
    containers.temp-pg.config.services.postgresql = {
     enable = true;
@@ -196,6 +201,7 @@ services.xserver = {
 	racket
 	skypeforlinux
 	tdesktop
+	unrar
 	whatsapp-for-linux
 	wine
 	wireshark-qt
