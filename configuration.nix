@@ -105,7 +105,6 @@ services.xserver = {
 # Configure keymap in X11
   layout = "us,ru";
   xkbOptions = "grp:alt_shift_toggle";
-
 };
       
 # Enable the GNOME Desktop Environment.
@@ -120,28 +119,16 @@ services.xserver = {
   sound.enable = true;
   hardware.pulseaudio.enable = true;
 
-#sound.extraConfig = 
-
    systemd.packages = [ pkgs.packagekit pkgs.earlyoom ];
-
-
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.gur = {
      isNormalUser = true;
      extraGroups = [ "wheel" "networkmanager" "docker" ]; # Enable ‘sudo’ for the user.
-   };
-   
-   services.postgresql.enable = true;
-   services.postgresql.package = pkgs.postgresql_11;
+   };     
    
    # pkgs.ksnip.enable = false;
-   
-   services.earlyoom = {
-   		enable = true;
-		freeMemThreshold = 1;
-   };
-   
+      
    containers.temp-pg.config.services.postgresql = {
     enable = true;
     package = pkgs.postgresql_12;
@@ -149,15 +136,13 @@ services.xserver = {
     # dataDir = "/some/data/dir";
   };
   
-
-#  services.emacs.package = pkgs.emacsPgtkGcc;
-#  nixpkgs.overlays = [
-#	    (import (builtins.fetchGit {
-#      url = "https://github.com/nix-community/emacs-overlay.git";
-#      ref = "master";
-#      rev = "bfc8f6edcb7bcf3cf24e4a7199b3f6fed96aaecf"; # change the revision
-#    }))
-#  ];
+ 	nixpkgs.overlays = [
+   		(import (builtins.fetchGit {
+      	url = "https://github.com/nix-community/emacs-overlay.git";
+      	ref = "master";
+      	rev = "bfc8f6edcb7bcf3cf24e4a7199b3f6fed96aaecf"; # change the revision
+    	}))
+  	];
 
   nixpkgs.config = {
     allowUnfree = true;
@@ -175,6 +160,7 @@ services.xserver = {
 	docker-compose
 	earlyoom
 	emacs
+	emacsPgtkGcc
 	foxitreader
 	git
 	google-chrome
@@ -183,7 +169,7 @@ services.xserver = {
 	jetbrains.pycharm-community
 	jetbrains.idea-ultimate
 	jetbrains.jdk
-    ksnip
+  ksnip
 	mongodb
 	nodejs
 	nodejs-14_x
@@ -192,7 +178,7 @@ services.xserver = {
 	nodePackages.typescript
 	networkmanagerapplet	
 	notepadqq
-	openjdk
+	# openjdk
 	openvpn
 	postgresql
 	postman
@@ -201,16 +187,15 @@ services.xserver = {
 	racket
 	skypeforlinux
 	tdesktop
+	tlp
 	unrar
+  visualvm
 	whatsapp-for-linux
 	wine
-	wireshark-qt
 	wpa_supplicant
 	wpsoffice
-	x11docker
-	yandex-disk
-#	emacsPgtkGcc  	 
- #   vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+	yandex-disk 	 
+  # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #   wget
    ];
 
@@ -224,6 +209,15 @@ services.xserver = {
   # };
 
   # List services that you want to enable:
+  services = {
+      postgresql.enable = true;
+      postgresql.package = pkgs.postgresql_11;
+      
+      tlp.enable = true;
+      
+      earlyoom.enable = true;
+		  earlyoom.freeMemThreshold = 1;
+  };
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
@@ -240,6 +234,7 @@ services.xserver = {
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+  
   system.autoUpgrade.enable = true;
   system.stateVersion = "22.05"; # Did you read the comment?
 
