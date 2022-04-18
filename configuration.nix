@@ -143,6 +143,7 @@ services.xserver = {
   environment.systemPackages = with pkgs; [
 	acpi
 	anydesk
+	jetbrains.clion
 	dhcpcd	
 	discord
 	dmidecode
@@ -211,7 +212,7 @@ services.xserver = {
       tlp.enable = true;
 	  blueman.enable = true;
       
-      earlyoom.enable = true; 
+      earlyoom.enable = true;
       earlyoom.freeMemThreshold = 1;
   };
 
