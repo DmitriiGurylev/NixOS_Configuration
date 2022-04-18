@@ -31,8 +31,6 @@ security.pam.services.kwallet = {
   boot.blacklistedKernelModules = [ "snd_pcsp" ]; # Disable PC Speaker "audio card"
   
   
-
-
   networking = {
 
 # Define your hostname.
@@ -48,7 +46,7 @@ security.pam.services.kwallet = {
       enable = false;
       interfaces = ["wlp1s0"];
       userControlled.enable = true;
-      userControlled.group = "wheel";
+      userControlled.group = "network";
       networks = {
         "RT-WiFi-92B2" = {
           psk = "x4tDupKE";
@@ -135,14 +133,6 @@ services.xserver = {
     ## set a custom new dataDir
     # dataDir = "/some/data/dir";
   };
-  
- 	nixpkgs.overlays = [
-   		(import (builtins.fetchGit {
-      	url = "https://github.com/nix-community/emacs-overlay.git";
-      	ref = "master";
-      	rev = "bfc8f6edcb7bcf3cf24e4a7199b3f6fed96aaecf"; # change the revision
-    	}))
-  	];
 
   nixpkgs.config = {
     allowUnfree = true;
@@ -160,7 +150,6 @@ services.xserver = {
 	docker-compose
 	earlyoom
 	emacs
-	emacsPgtkGcc
 	foxitreader
 	git
 	google-chrome
@@ -169,7 +158,8 @@ services.xserver = {
 	jetbrains.pycharm-community
 	jetbrains.idea-ultimate
 	jetbrains.jdk
-  ksnip
+	killall
+  	ksnip
 	mongodb
 	nodejs
 	nodejs-14_x
@@ -182,19 +172,24 @@ services.xserver = {
 	openvpn
 	postgresql
 	postman
+	pkg-config
 	pkgs.postgresql
 	pulseaudio
 	racket
+	rar
 	skypeforlinux
 	tdesktop
+  	tdlib
 	tlp
 	unrar
-  visualvm
+	unzip
+  	visualvm
 	whatsapp-for-linux
 	wine
 	wpa_supplicant
 	wpsoffice
-	yandex-disk 	 
+	yandex-disk 
+	zip
   # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #   wget
    ];
@@ -210,10 +205,11 @@ services.xserver = {
 
   # List services that you want to enable:
   services = {
-      postgresql.enable = true;
-      postgresql.package = pkgs.postgresql_11;
+     # postgresql.enable = true;
+     # postgresql.package = pkgs.postgresql_11;
       
       tlp.enable = true;
+	  blueman.enable = true;
       
       earlyoom.enable = true;
 		  earlyoom.freeMemThreshold = 1;
