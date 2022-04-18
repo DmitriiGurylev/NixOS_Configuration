@@ -211,8 +211,8 @@ services.xserver = {
       tlp.enable = true;
 	  blueman.enable = true;
       
-      earlyoom.enable = true;
-		  earlyoom.freeMemThreshold = 1;
+      earlyoom.enable = true; 
+      earlyoom.freeMemThreshold = 1;
   };
 
   # Enable the OpenSSH daemon.
