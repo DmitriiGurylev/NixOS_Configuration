@@ -1,7 +1,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 {  
 
   imports =
@@ -215,9 +215,14 @@ services.xserver = {
 	  blueman.enable = true;
       
       earlyoom.enable = true;
-		  earlyoom.freeMemThreshold = 1;
+	#  earlyoom.freeMemThreshold = 1;
+	 # earlyoom.enableNotifications = true;
   };
-
+  
+	systemd.services.earlyoom.serviceConfig.ExecStart = lib.mkForce [    	
+    	"${pkgs.earlyoom}/bin/earlyoom -m 1 --avoid (java|google)"
+	];
+  
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
 
@@ -238,5 +243,6 @@ services.xserver = {
   system.stateVersion = "22.05"; # Did you read the comment?
 
 }
+
 
 
