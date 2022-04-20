@@ -143,6 +143,8 @@ services.xserver = {
   environment.systemPackages = with pkgs; [
 	acpi
 	anydesk
+	clang
+	cmake
 	jetbrains.clion
 	dhcpcd	
 	discord
@@ -169,7 +171,7 @@ services.xserver = {
 	nodePackages.typescript
 	networkmanagerapplet	
 	notepadqq
-	# openjdk
+	openjdk
 	openvpn
 	postgresql
 	postman
@@ -213,7 +215,7 @@ services.xserver = {
 	  blueman.enable = true;
       
       earlyoom.enable = true;
-      earlyoom.freeMemThreshold = 1;
+		  earlyoom.freeMemThreshold = 1;
   };
 
   # Enable the OpenSSH daemon.
