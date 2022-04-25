@@ -220,7 +220,7 @@ services.xserver = {
   };
   
 	systemd.services.earlyoom.serviceConfig.ExecStart = lib.mkForce [    	
-    	"${pkgs.earlyoom}/bin/earlyoom -m 1 --avoid (java|google)"
+    	"${pkgs.earlyoom}/bin/earlyoom -m 1 --avoid (java|google|idea-ult)"
 	];
   
   # Enable the OpenSSH daemon.
