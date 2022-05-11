@@ -145,7 +145,6 @@ services.xserver = {
 	anydesk
 	clang
 	cmake
-	jetbrains.clion
 	dhcpcd	
 	discord
 	dmidecode
@@ -158,11 +157,14 @@ services.xserver = {
 	google-chrome
 	htop
 	i2c-tools
-	jetbrains.pycharm-community
+	jetbrains.clion
 	jetbrains.idea-ultimate
 	jetbrains.jdk
+	jetbrains.pycharm-community
 	killall
   	ksnip
+	man-pages
+	man-pages-posix
 	mongodb
 	nodejs
 	nodejs-14_x
@@ -178,6 +180,7 @@ services.xserver = {
 	pkg-config
 	pkgs.postgresql
 	pulseaudio
+	python
 	racket
 	rar
 	skypeforlinux
@@ -187,6 +190,7 @@ services.xserver = {
 	unrar
 	unzip
   	visualvm
+	vlc
 	whatsapp-for-linux
 	wine
 	wpa_supplicant
@@ -241,6 +245,15 @@ services.xserver = {
   
   system.autoUpgrade.enable = true;
   system.stateVersion = "22.05"; # Did you read the comment?
+  
+  environment.etc."current-system-packages".text =
+
+let
+	packages = builtins.map (p: "${p.name}") config.environment.systemPackages;
+	sortedUnique = builtins.sort builtins.lessThan (lib.unique packages);
+	formatted = builtins.concatStringsSep "\n" sortedUnique;
+in
+	formatted;
 
 }
 
