@@ -115,7 +115,11 @@ services.xserver = {
 
   # Enable sound.
   sound.enable = true;
-  hardware.pulseaudio.enable = true;
+  hardware.pulseaudio = {
+    enable = true;
+    extraModules = [ pkgs.pulseaudio-modules-bt ];
+    package = pkgs.pulseaudioFull;
+  };
 
    systemd.packages = [ pkgs.packagekit pkgs.earlyoom ];
 
@@ -155,6 +159,7 @@ services.xserver = {
 	foxitreader
 	git
 	google-chrome
+	h2
 	htop
 	i2c-tools
 	jetbrains.clion
@@ -187,6 +192,8 @@ services.xserver = {
 	tdesktop
   	tdlib
 	tlp
+	tomcat9
+	tomcat10
 	unrar
 	unzip
   	visualvm
