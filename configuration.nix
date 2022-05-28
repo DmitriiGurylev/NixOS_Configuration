@@ -147,6 +147,7 @@ services.xserver = {
   environment.systemPackages = with pkgs; [
 	acpi
 	anydesk
+	#dotnet-aspnetcore
 	clang
 	cmake
 	dhcpcd	
@@ -154,23 +155,37 @@ services.xserver = {
 	dmidecode
 	docker
 	docker-compose
+	dotnet-sdk
+	#dotnet-sdk_3
+	#dotnet-runtime
+	dotnetPackages.StyleCopPlusMSBuild
 	earlyoom
+	electron
 	emacs
 	foxitreader
 	git
+	glib
 	google-chrome
+	gsettings-desktop-schemas
+	gtk4
 	h2
+	home-manager
 	htop
 	i2c-tools
-	jetbrains.clion
-	jetbrains.idea-ultimate
-	jetbrains.jdk
-	jetbrains.pycharm-community
+	#jetbrains.clion
+	#jetbrains.idea-ultimate
+	#jetbrains.jdk8
+	#oraclejdk8
+	#oraclejre8
+	#jetbrains.pycharm-community
+	jetbrains.rider
 	killall
   	ksnip
 	man-pages
 	man-pages-posix
 	mongodb
+	mono
+	msbuild
 	nodejs
 	nodejs-14_x
 	nodejs-16_x
@@ -184,6 +199,7 @@ services.xserver = {
 	postman
 	pkg-config
 	pkgs.postgresql
+	pstree
 	pulseaudio
 	python
 	racket
@@ -200,13 +216,19 @@ services.xserver = {
 	vlc
 	whatsapp-for-linux
 	wine
+	wireshark
 	wpa_supplicant
 	wpsoffice
-	yandex-disk 
+	#yandex-disk 
 	zip
   # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #   wget
    ];
+   
+  # dotnetCombined = with dotnetCorePackages; combinePackages {
+ #   cli=sdk_3_1_preview;
+ #   withSdks = [ sdk_2_2 sdk_3_0 sdk_3_1_preview ];
+ #   withRuntimes = [ aspnetcore_2_1 sdk_3_0 sdk_2_2 sdk_3_1_preview  ];
+ # };
 
 
   # Some programs need SUID wrappers, can be configured further or are
